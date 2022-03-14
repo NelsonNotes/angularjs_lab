@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title>Test</title>
+    <script src="lib/angular.min.js"></script>
+    <script src="myApp.js"></script>
+    <script src="myEmpl.js"></script>
+</head>
+<body ng-app="myApp" ng-init="firstName='Derek'">
+<div>
+  <p>Name : <input type="text" ng-model="name"></p>
+  <p>Hello {{name}}</p>
+  <p>The other name is <span ng-bind="firstName"></span></p>
+  <p>Without bind usage the name is {{firstName}}</p>
+</div>
+<hr>
+<div ng-controller="nameCtrl">
+  <p>First name: <input type="text" ng-model="firstName"></p>
+  <p>Last name: <input type="text" ng-model="lastName"></p>
+  <p>Full name: {{firstName + ' ' + lastName}}</p>
+</div>
+<hr>
+<div ng-controller="numCtrl">
+  <p>Number name is: <input type="number" ng-model="firstName"></p>
+  <p>Number surname is: <input type="number" ng-model="lastName"></p>
+  <p>Full number name: {{firstName + ' ' + lastName}}</p>
+</div>
+<hr>
+<div ng-controller="colCtrl">
+  <!-- <input type="text" style="background-color: {{color}}" ng-model="color"> # it underlined {{ }} -->
+</div>
+<hr>
+<div test-directive></div>
+<hr>
+<div ng-controller="reptCtrl">
+    <ul>
+        <li ng-repeat="person in persons | orderBy: 'lastName'">
+            <p>{{person.firstName + ' ' + person.lastName}}</p>
+        </li>
+    </ul>
+</div>
+<hr>
+<form name="myForm">
+    Email: 
+    <input type="email" name="myEmail" ng-model="email">
+    <span ng-show="myForm.myEmail.$error.email">Not a valid email address</span>
+</form>
+<hr>
+<div ng-controller="chnameCtrl">
+    <a href ng-click="changeName()">{{firstName}}</a>
+    <a href ng-click="changeName()">{{firstName}}</a>
+    <a href ng-click="changeName()">{{firstName}}</a>
+</div>
+<hr>
+<div ng-controller="dateCtrl">
+    <p>{{answer.in_gen.turned_on.split(' ').join('T') | date: 'dd.MM.yyyy, hh:mm:ss'}}</p>
+</div>
+<hr>
+<div ng-controller="apiCtrl">
+    {{answer.in_gen.id}}
+</div>
+<hr>
+<div ng-controller="reptCtrl">
+    <select ng-model="selectedPerson" ng-options="person.firstName for person in persons"></select>
+    <p>{{selectedPerson.firstName + ' ' + selectedPerson.lastName}}</p>
+</div>
+<hr>
+<div>
+    <p>First name: <input type="text" ng-model="firstName" ng-disabled="disableFields" ng-show="visibleFields"></p>
+    <p>Last name: <input type="text" ng-model="lastName" ng-disabled="disableFields" ng-show="visibleFields"></p>
+    <p>{{firstName + ' ' + lastName}}</p>
+    <input type="checkbox" ng-model="disableFields">Disable fields
+    <input type="checkbox" ng-model="visibleFields">Fields visible
+</div>
+
+</body>
+</html>
